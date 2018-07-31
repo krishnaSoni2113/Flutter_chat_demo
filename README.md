@@ -1,8 +1,11 @@
 # flutter_chat_demo
 
-A new Flutter application.
+A Chat Flutter application.
 
-## Getting Started
+## Overview
 
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+A chating detial screen with following content
+- Sender message view
+- Sender image view
+- receiver message view
+- receiver image view
