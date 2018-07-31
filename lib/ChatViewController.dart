@@ -125,41 +125,78 @@ class ChatViewState extends State<ChatViewController>
   }
 
   Widget chatListView() {
+
     return ListView.builder(
-      scrollDirection: Axis.vertical,
-      itemCount: 10,
-      itemBuilder: (context, index) {
-        switch (index) {
-          case 0:
-            {
-              return senderCell();
-            }
-            break;
-          case 1:
-            {
-              return receiverCell();
-            }
-            break;
+      physics: ClampingScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return Column(
+            children: <Widget>[
+              new Container(
+                height: 50.0,
+                width: screenWidth,
+                color: Colors.transparent,
+                child: new Center(
+                  child: Container(
+                    height: 30.0,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(248, 185, 3, 1.0),
+                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      border: Border.all(color: Color.fromRGBO(252, 127, 1, 1.0),width: 2.0)
+                    ),
 
-          case 2:
-            {
-              return senderImageCell();
-            }
-            break;
+                    child: new Padding(padding: EdgeInsets.all(5.0),child: Text("10 march 2018", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)) ,
+                  ),
+                ),
 
-          case 3:
-            {
-              return receiverImageCell();
-            }
-            break;
 
-          default:
-            {
-              return index % 2 == 0 ? receiverCell() : senderCell();
-            }
-            break;
+              ),
+
+              ListView.builder(
+                physics: ClampingScrollPhysics(),
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  switch (index) {
+                    case 0:
+                      {
+                        return senderCell();
+                      }
+                      break;
+                    case 1:
+                      {
+                        return receiverCell();
+                      }
+                      break;
+
+                    case 2:
+                      {
+                        return senderImageCell();
+                      }
+                      break;
+
+                    case 3:
+                      {
+                        return receiverImageCell();
+                      }
+                      break;
+
+                    default:
+                      {
+                        return index % 2 == 0 ? receiverCell() : senderCell();
+                      }
+                      break;
+                  }
+                },
+              )
+
+
+            ],
+          );
+
         }
-      },
     );
   }
 
