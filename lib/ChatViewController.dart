@@ -5,7 +5,6 @@ import 'dart:ui';
 double screenWidth = window.physicalSize.width / window.devicePixelRatio;
 double screenHeight = window.physicalSize.height / window.devicePixelRatio;
 
-
 //final double height = MediaQuery.of(context).size.height;
 
 class ChatViewController extends StatefulWidget {
@@ -24,10 +23,9 @@ class ChatViewState extends State<ChatViewController>
         width: screenWidth,
         decoration: BoxDecoration(
             image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage(
-                    "Images/bg.png"))),
-        child: Column(
+                fit: BoxFit.fill, image: AssetImage("Images/bg.png"))),
+        child: chatListView()
+        /*Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -38,16 +36,16 @@ class ChatViewState extends State<ChatViewController>
 
             child: Container(
               width: screenWidth,
-              height: screenHeight - 136,
+              height: screenHeight,
               child: chatListView(),
             ),
             ),
 
-            messageTypingSection()
+//            messageTypingSection()
 
           ],
-        )
-    );
+        )*/
+        );
 
     return Scaffold(
         body: container,
@@ -68,86 +66,99 @@ class ChatViewState extends State<ChatViewController>
       ),
       hintText: "Password",
     ),
-
   );
 
-  Widget messageTypingSection(){
-
-   return Container(
+  Widget messageTypingSection() {
+    return Container(
       height: 60.0,
       width: screenWidth,
       color: Color.fromRGBO(90, 81, 164, 1.0),
-     child: Row(
-
-       children: <Widget>[
+      child: Row(
+        children: <Widget>[
           new Container(
             width: screenWidth - 60,
             height: 60.0,
-            child: new Padding(padding: EdgeInsets.only(right: 10.0, top: 10.0, bottom: 10.0, left: 20.0),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(81, 72, 150, 1.0),
-                borderRadius: BorderRadius.all(Radius.circular(20.0)),
-                border: Border.all(color: Color.fromRGBO(59, 45, 118, 1.0),)
+            child: new Padding(
+              padding: EdgeInsets.only(
+                  right: 10.0, top: 10.0, bottom: 10.0, left: 20.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(81, 72, 150, 1.0),
+                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    border: Border.all(
+                      color: Color.fromRGBO(59, 45, 118, 1.0),
+                    )),
+                child: Row(
+                  children: <Widget>[
+//                  TextFormField(
+//                    decoration: InputDecoration(
+//                        labelText: 'Enter your message here...'
+//                    ),
+//                  ),
+                  ],
+                ),
               ),
-
-              child: Row(
-                children: <Widget>[
-
-//                  txtSend
-
-
-
-                ],
-              ),
-            ),),
+            ),
           ),
-
-          new Container(
-            width: 60.0,
-            height: 60.0,
-          )
-
-
-       ],
-     ),
+          new GestureDetector(
+            onTap: () {
+              print("Send clk ====== ");
+            },
+            child: new Container(
+              width: 60.0,
+              height: 60.0,
+              child: new Center(
+                child: Text(
+                  "Send",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15.0,
+                      fontStyle: FontStyle.italic),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
-
   }
-
 
   Widget chatListView() {
     return ListView.builder(
       scrollDirection: Axis.vertical,
       itemCount: 10,
       itemBuilder: (context, index) {
-        switch(index){
-          case 0:{
-            return senderCell();
-          }
+        switch (index) {
+          case 0:
+            {
+              return senderCell();
+            }
             break;
-          case 1:{
-            return receiverCell();
-          }
-          break;
+          case 1:
+            {
+              return receiverCell();
+            }
+            break;
 
-          case 2:{
-            return senderImageCell();
-          }
-          break;
+          case 2:
+            {
+              return senderImageCell();
+            }
+            break;
 
-          case 3:{
-            return receiverImageCell();
-          }
-          break;
+          case 3:
+            {
+              return receiverImageCell();
+            }
+            break;
 
-          default:{
-            return index%2 == 0 ? receiverCell() : senderCell();
-          }
-          break;
-
+          default:
+            {
+              return index % 2 == 0 ? receiverCell() : senderCell();
+            }
+            break;
         }
-
       },
     );
   }
@@ -171,9 +182,7 @@ class ChatViewState extends State<ChatViewController>
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       border: Border.all(color: Colors.white, width: 3.0),
                       image: DecorationImage(
-                          image: AssetImage(
-                              "Images/1.jpg"),
-                          fit: BoxFit.fill)),
+                          image: AssetImage("Images/1.jpg"), fit: BoxFit.fill)),
                 ),
               ),
               new Padding(
@@ -247,9 +256,7 @@ class ChatViewState extends State<ChatViewController>
                       borderRadius: BorderRadius.all(Radius.circular(5.0)),
                       border: Border.all(color: Colors.white, width: 3.0),
                       image: DecorationImage(
-                          image: AssetImage(
-                              "Images/1.jpg"),
-                          fit: BoxFit.fill)),
+                          image: AssetImage("Images/1.jpg"), fit: BoxFit.fill)),
                 ),
               ),
               new Padding(
@@ -275,18 +282,16 @@ class ChatViewState extends State<ChatViewController>
                             child: Container(
                               height: 200.0,
                               width: 200.0,
-                                decoration: BoxDecoration(
-                                    color: Color.fromRGBO(90, 81, 164, 1.0),
-                                    borderRadius:
-                                    BorderRadius.all(Radius.circular(10.0)),
-                                    border: Border.all(
-                                        color: Color.fromRGBO(55, 46, 122, 1.0),
-                                        width: 3.0),
-                                  image: DecorationImage(image: AssetImage("Images/1.jpg"))
-
-                                ),
-                            )
-                        ),
+                              decoration: BoxDecoration(
+                                  color: Color.fromRGBO(90, 81, 164, 1.0),
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(10.0)),
+                                  border: Border.all(
+                                      color: Color.fromRGBO(55, 46, 122, 1.0),
+                                      width: 3.0),
+                                  image: DecorationImage(
+                                      image: AssetImage("Images/1.jpg"))),
+                            )),
                         new Padding(
                             padding: EdgeInsets.only(
                                 left: 0.0, top: 3.0, bottom: 10.0),
@@ -372,9 +377,7 @@ class ChatViewState extends State<ChatViewController>
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     border: Border.all(color: Colors.white, width: 3.0),
                     image: DecorationImage(
-                        image: AssetImage(
-                            "Images/1.jpg"),
-                        fit: BoxFit.fill)),
+                        image: AssetImage("Images/1.jpg"), fit: BoxFit.fill)),
               ),
             ),
           ],
@@ -410,23 +413,20 @@ class ChatViewState extends State<ChatViewController>
                               textAlign: TextAlign.center)),
                       new Padding(
                           padding:
-                          EdgeInsets.only(left: 10.0, top: 5.0, right: 0.0),
+                              EdgeInsets.only(left: 10.0, top: 5.0, right: 0.0),
                           child: Container(
                             height: 200.0,
-                              width: 200.0,
-                              decoration: BoxDecoration(
-                                  color: Color.fromRGBO(46, 179, 154, 1.0),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
-                                  border: Border.all(
-                                      color: Color.fromRGBO(38, 156, 132, 1.0),
-                                      width: 3.0
-                                  ),
-                                image: DecorationImage(image: AssetImage("Images/2.jpg"))
-                              ),
-
-                          )
-                      ),
+                            width: 200.0,
+                            decoration: BoxDecoration(
+                                color: Color.fromRGBO(46, 179, 154, 1.0),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(10.0)),
+                                border: Border.all(
+                                    color: Color.fromRGBO(38, 156, 132, 1.0),
+                                    width: 3.0),
+                                image: DecorationImage(
+                                    image: AssetImage("Images/2.jpg"))),
+                          )),
                       new Padding(
                           padding: EdgeInsets.only(
                               right: 0.0, top: 3.0, bottom: 10.0),
@@ -450,9 +450,7 @@ class ChatViewState extends State<ChatViewController>
                     borderRadius: BorderRadius.all(Radius.circular(5.0)),
                     border: Border.all(color: Colors.white, width: 3.0),
                     image: DecorationImage(
-                        image: AssetImage(
-                            "Images/1.jpg"),
-                        fit: BoxFit.fill)),
+                        image: AssetImage("Images/1.jpg"), fit: BoxFit.fill)),
               ),
             ),
           ],
