@@ -146,7 +146,7 @@ class ChatViewState extends State<ChatViewController>
                       border: Border.all(color: Color.fromRGBO(252, 127, 1, 1.0),width: 2.0)
                     ),
 
-                    child: new Padding(padding: EdgeInsets.all(5.0),child: Text("10 march 2018", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)) ,
+                    child: new Padding(padding: EdgeInsets.all(5.0),child: Text("${index+1} march 2018", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),)) ,
                   ),
                 ),
 
